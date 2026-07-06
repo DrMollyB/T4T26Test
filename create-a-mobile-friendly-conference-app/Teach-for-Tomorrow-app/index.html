@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teach for Tomorrow Conference</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <img
+            class="event-logo"
+            src="Teach-for-Tomorrow-2026.jpg"
+            alt="Teach for Tomorrow 2026: Mission Possible"
+          />
+          <p class="eyebrow">Teach for Tomorrow</p>
+          <h1 data-i18n="appTitle">Mission Control</h1>
+        </div>
+        <div class="header-actions">
+          <button class="app-back-button" id="appBackButton" type="button" data-i18n="backButton" hidden>
+            ← Back
+          </button>
+          <div class="language-control" aria-label="Translate app">
+            <label for="languageSelect" data-i18n="translateLabel">Translate</label>
+            <select id="languageSelect">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="hi">हिन्दी</option>
+            </select>
+          </div>
+          <button
+            class="schedule-pill"
+            id="schedulePill"
+            type="button"
+            aria-label="Open My Schedule"
+            data-i18n-aria="openSchedule"
+          >
+            <span data-i18n="mySchedule">My Schedule</span> <span id="scheduleCount">0</span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="page" id="directoryPage" aria-labelledby="directoryTitle">
+          <div class="section-head">
+            <div>
+              <h2 id="directoryTitle" data-i18n="directoryTitle">Session Launchpad</h2>
+              <p data-i18n="directoryHelp">Search by title, presenter, room, track, or keyword.</p>
+            </div>
+            <button class="refresh-button" id="refreshScheduleButton" type="button" data-i18n="refreshSchedule">
+              Refresh schedule
+            </button>
+          </div>
+          <p class="sync-status" id="syncStatus">Using built-in schedule.</p>
+
+          <label class="search-box" for="sessionSearch">
+            <span aria-hidden="true" data-i18n="searchLabel">Search</span>
+            <input
+              id="sessionSearch"
+              type="search"
+              placeholder="Try literacy, Room 204, equity..."
+              data-i18n-placeholder="searchPlaceholder"
+              autocomplete="off"
+            />
+          </label>
+
+          <div
+            class="filter-row"
+            id="trackFilters"
+            aria-label="Track filters"
+            data-i18n-aria="trackFilters"
+          ></div>
+          <p class="result-count" id="resultCount"></p>
+          <div class="card-grid" id="sessionList"></div>
+        </section>
+
+        <section class="page" id="detailsPage" aria-labelledby="detailsTitle">
+          <div class="section-head">
+            <div>
+              <h2 id="detailsTitle" data-i18n="detailsTitle">Session Details</h2>
+              <p data-i18n="detailsHelp">Tap a session to read the full description.</p>
+            </div>
+          </div>
+
+          <label class="search-box" for="detailsSearch">
+            <span aria-hidden="true" data-i18n="searchLabel">Search</span>
+            <input
+              id="detailsSearch"
+              type="search"
+              placeholder="Search descriptions, presenters, or keywords..."
+              data-i18n-placeholder="detailsSearchPlaceholder"
+              autocomplete="off"
+            />
+          </label>
+
+          <div class="session-detail-list" id="sessionDetailList"></div>
+        </section>
+
+        <section class="page active" id="operationPage" aria-labelledby="operationTitle">
+          <div class="section-head">
+            <div>
+              <h2 id="operationTitle" data-i18n="operationTitle">Operation Schedule</h2>
+              <p data-i18n="operationHelp">A quick day-at-a-glance timeline for the conference.</p>
+            </div>
+          </div>
+          <div class="operation-list" id="operationScheduleList"></div>
+        </section>
+
+        <section class="page" id="schedulePage" aria-labelledby="scheduleTitle">
+          <div class="section-head">
+            <div>
+              <h2 id="scheduleTitle" data-i18n="mySchedule">My Schedule</h2>
+              <p data-i18n="scheduleHelp">Your saved sessions, grouped by time.</p>
+            </div>
+          </div>
+          <div id="scheduleList"></div>
+        </section>
+
+        <section class="page" id="mapPage" aria-labelledby="mapTitle">
+          <div class="section-head">
+            <div>
+              <h2 id="mapTitle" data-i18n="mapTitle">School Map</h2>
+              <p data-i18n="mapHelp">Load a school map for attendees to reference during the conference.</p>
+            </div>
+          </div>
+          <div class="info-panel">
+            <label class="upload-box" for="mapUpload">
+              <span data-i18n="mapUploadLabel">Upload school map</span>
+              <input id="mapUpload" type="file" accept="image/*" />
+            </label>
+            <div class="map-preview" id="mapPreview"></div>
+          </div>
+        </section>
+
+        <section class="page" id="foodPage" aria-labelledby="foodTitle">
+          <div class="section-head">
+            <div>
+              <h2 id="foodTitle" data-i18n="foodTitle">Food Trucks</h2>
+              <p data-i18n="foodHelp">Food truck options and meal notes for attendees.</p>
+            </div>
+          </div>
+          <div class="info-grid" id="foodTruckList"></div>
+        </section>
+
+        <section class="page" id="innovationPage" aria-labelledby="innovationTitle">
+          <div class="section-head">
+            <div>
+              <h2 id="innovationTitle" data-i18n="innovationTitle">Innovation Zone</h2>
+              <p data-i18n="innovationHelp">Explore hands-on tools and featured experiences.</p>
+            </div>
+          </div>
+          <div class="info-grid" id="innovationList"></div>
+        </section>
+
+        <section class="page" id="presentersPage" aria-labelledby="presentersTitle">
+          <div class="section-head">
+            <div>
+              <h2 id="presentersTitle" data-i18n="presentersTitle">Presenters</h2>
+              <p data-i18n="presentersHelp">Tap a presenter to view details and their sessions.</p>
+            </div>
+          </div>
+          <label class="search-box" for="presenterSearch">
+            <span aria-hidden="true" data-i18n="searchLabel">Search</span>
+            <input
+              id="presenterSearch"
+              type="search"
+              placeholder="Search presenters..."
+              data-i18n-placeholder="presenterSearchPlaceholder"
+              autocomplete="off"
+            />
+          </label>
+          <div id="presenterDetail"></div>
+          <div class="presenter-list" id="presenterList"></div>
+        </section>
+      </main>
+
+      <nav class="tabbar" aria-label="Main navigation" data-i18n-aria="mainNavigation">
+        <button class="tab active" type="button" data-page="operationPage">
+          <span aria-hidden="true">▦</span>
+          <span data-i18n="operationTab">Schedule</span>
+        </button>
+        <button class="tab" type="button" data-page="directoryPage">
+          <span aria-hidden="true">⌕</span>
+          <span data-i18n="directoryTab">Times</span>
+        </button>
+        <button class="tab" type="button" data-page="detailsPage">
+          <span aria-hidden="true">☰</span>
+          <span data-i18n="detailsTab">Sessions</span>
+        </button>
+        <button class="tab" type="button" data-page="schedulePage">
+          <span aria-hidden="true">□</span>
+          <span data-i18n="mySchedule">My Schedule</span>
+        </button>
+        <button class="tab" type="button" data-page="mapPage">
+          <span aria-hidden="true">⌖</span>
+          <span data-i18n="mapTab">Map</span>
+        </button>
+        <button class="tab" type="button" data-page="foodPage">
+          <span aria-hidden="true">▤</span>
+          <span data-i18n="foodTab">Food</span>
+        </button>
+        <button class="tab" type="button" data-page="innovationPage">
+          <span aria-hidden="true">✦</span>
+          <span data-i18n="innovationTab">Innovation</span>
+        </button>
+        <button class="tab" type="button" data-page="presentersPage">
+          <span aria-hidden="true">◉</span>
+          <span data-i18n="presentersTab">Presenters</span>
+        </button>
+      </nav>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
